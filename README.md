@@ -2,7 +2,9 @@
 
 #### Seven quick sessions to learn the basics of PowerShell while analysing the configuration of a Windows system.
 
-The session script files are designed to only be used as a reference to the commands to type out. 
+All lab code and descriptions are listed in README. 
+
+The session script files are designed to only be used as a downloadable reference. 
 
 At the beginning of each script is a "exit" command to prevent an accidental run
 
