@@ -1,8 +1,8 @@
 ## Beginning PowerShell for Windows System Analysis Lab
 
-#### Seven quick sessions to learn the basics of PowerShell while analysing the configuration of a Windows system.
+Seven quick sessions to learn the basics of PowerShell while analysing the configuration of a Windows system.
 
-All lab code and descriptions are listed in README. 
+**All lab code and descriptions are listed in README**. 
 
 The session script files are designed to only be used as a downloadable reference. 
 
