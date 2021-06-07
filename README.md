@@ -243,6 +243,7 @@ Stop-Process -ID NothingHere -ErrorAction "SilentlyContinue";
 <details>
 <summary>Environment Variables</summary>
 
+
 View Environment Variables
 ```powershell
 Get-ChildItem Env:
@@ -257,6 +258,7 @@ $Env:path -split ";"
 
 <details>
 <summary>File System</summary>
+
 
 Navigate with Set-Location (alias cd)
 ```powershell
@@ -336,6 +338,7 @@ Get-FileHash .\Scary_Executable_I_Just_Downloaded.exe
 <details>
 <summary>PSDrive and Registry</summary>
 
+
 PS Drives
 ```powershell
 Get-PSDrive
@@ -366,6 +369,7 @@ cd env:
 <details>
 <summary>Searching File Contents</summary>
 
+
 Create File to Search
 ```powershell
 Get-Process | Out-File processes.txt
@@ -390,6 +394,7 @@ Select-String "explorer" .\process*
 <details>
 <summary>System Information</summary>
 
+
 Get BIOS Information
 ```powershell
 Get-WmiObject -Class Win32_BIOS -Computer localhost
@@ -407,6 +412,7 @@ Get-WmiObject -Class Win32_OperatingSystem -Computer localhost
 
 <details>
 <summary>Disk Information</summary>
+
 
 Get Disk Information
 ```powershell
@@ -454,6 +460,7 @@ Get-WmiObject -Class Win32_Share -Computer localhost
 <details>
 <summary>Processor and Memory</summary>
 
+
 Get Processor Information
 ```powershell
 Get-WmiObject -Class Win32_Processor | Select-Object Name,Description,NumberOfCores | Sort-Object Name
@@ -472,6 +479,7 @@ Get-WMIObject -Class Win32_PhysicalMemory | ForEach-Object { Write-Output ($_.De
 <details>
 <summary>Printer Information</summary>
 
+
 Show Printers
 ```powershell
 Get-Printer
@@ -487,6 +495,7 @@ Get-PrinterPort
 
 <details>
 <summary>Local Users and Groups</summary>
+
 
 Show Local Users
 ```powershell
@@ -509,6 +518,7 @@ Get-WmiObject win32_userprofile | Select LocalPath,SID
 
 <details>
 <summary>Processes and Services</summary>
+
 
 Get Process By Partial Name
 ```powershell
@@ -542,6 +552,7 @@ Get-WmiObject -Class Win32_Service -Computer localhost | Select-Object Name,Stat
 <details>
 <summary>Event Logs</summary>
 
+
 Get All Event Log Names on a System
 ```powershell
 Get-EventLog -List
@@ -573,6 +584,7 @@ Get-EventLog -LogName Security -InstanceId 4624 -After (get-date).AddDays(-1)
 <details>
 <summary>Scheduled Tasks</summary>
 
+
 Show Scheduled Tasks
 ```powershell
 Get-ScheduledTask | FL
@@ -596,6 +608,7 @@ Get-ScheduledTask | Sort-Object -Property TaskName | Foreach-Object { Write-Outp
 
 <details>
 <summary>Windows Updates</summary>
+
 
 Show Windows Update Log
 ```powershell
@@ -622,6 +635,7 @@ Get-Content $env:windir\windowsupdate.log | Select-String "Added update"
 
 <details>
 <summary>Installed Software</summary>
+
 
 Get List of Installed 64 bit Software
 ```powershell
@@ -652,6 +666,7 @@ $arrInstldApps;
 
 <details>
 <summary>Network Settings and Connections</summary>
+
 
 Show Network Adapters
 ```powershell
@@ -702,6 +717,7 @@ Get-WmiObject -Class Win32_NetworkAdapterConfiguration | Where-Object { $_.IPAdd
 
 <details>
 <summary>Firewall Configuration</summary>
+
 
 Show Firewall Status
 ```powershell
