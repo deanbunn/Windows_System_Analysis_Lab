@@ -241,6 +241,21 @@ Stop-Process -ID NothingHere -ErrorAction "SilentlyContinue";
 ## Lesson 3
 
 <details>
+<summary>Environment Variables</summary>
+
+View Environment Variables
+```powershell
+Get-ChildItem Env:
+```
+View Path Environment Variable
+```powershell
+$Env:path -split ";"
+```
+
+</details>
+
+
+<details>
 <summary>File System</summary>
 
 Navigate with Set-Location (alias cd)
