@@ -14,7 +14,7 @@ At the beginning of each script is a "exit" command to prevent an accidental run
 <details>
 <summary>Transcripts</summary>
 
-[](#transcripts)
+
 Start a Transcript File
 ```powershell
 Start-Transcript
@@ -37,7 +37,7 @@ Stop-Transcript
 <details>
 <summary>PowerShell Version</summary>
 
-[](#psversion)
+
 View PowerShell Version
 ```powershell
 $PSVersionTable
@@ -47,7 +47,6 @@ $PSVersionTable
 <details>
 <summary>Cmdlets and Modules</summary>
 
-[](#cmdlets)
 Cmdlet Format -eq action-noun
 ```powershell
 Get-Command -Noun service
