@@ -56,3 +56,19 @@ Get-NetFirewallProfile -Name Domain | Get-NetFirewallRule | More
 
 #Get Firewall Rules that Allow Inbound Traffic
 Get-NetFirewallRule -Enabled True -Direction Inbound -Action Allow
+
+
+############################################
+# Windows Remote Management
+############################################
+
+#Check Status of WinRM Service
+Get-Service -Name WinRM
+#Or 
+Test-WSMan
+
+#View WinRM Config
+Get-WSManInstance -ComputerName Localhost -ResourceURI winrm/config
+
+#Display Listener Information
+Get-WSManInstance -ComputerName Localhost -ResourceURI winrm/config/Listener -Enumerate

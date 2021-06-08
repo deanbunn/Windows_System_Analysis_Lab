@@ -611,7 +611,7 @@ Get-ScheduledTask | Sort-Object -Property TaskName | Foreach-Object { Write-Outp
 <details>
 <summary>Remote Desktop Protocol (RDP)</summary>
 
-View RDP Configuration (If not set via GPO). Check out fDenyTSConnections 0 = enabled, 1 = disabled
+View RDP Configuration (If not set via GPO). Check out fDenyTSConnections key. 0 = enabled, 1 = disabled
 ```powershell
 Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server'
 ```
@@ -757,4 +757,24 @@ Get-NetFirewallRule -Enabled True -Direction Inbound -Action Allow
 
 </details>
 
+<details>
+<summary>Windows Remote Management</summary>
+
+Check Status of WinRM Service
+```powershell
+Get-Service -Name WinRM
+#Or
+Test-WSMan
+```
+View WinRM Config
+```powershell
+Get-WSManInstance -ComputerName Localhost -ResourceURI winrm/config
+```
+Display WinRM Listener Information
+```powershell
+Get-WSManInstance -ComputerName Localhost -ResourceURI winrm/config/Listener -Enumerate
+```
+
+
+</details>
 
