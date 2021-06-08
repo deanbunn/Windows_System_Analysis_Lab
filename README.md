@@ -4,7 +4,7 @@ Seven quick sessions to learn the basics of PowerShell while analysing the confi
 
 **All lab code and descriptions are listed in README**. 
 
-The session script files are designed to only be used as a downloadable reference. 
+The lesson script files are designed to only be used as a downloadable reference. 
 
 At the beginning of each script is a "exit" command to prevent an accidental run
 
