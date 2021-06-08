@@ -511,6 +511,10 @@ Show Local Group Membership
 ```powershell
 Get-LocalGroupMember -Group Administrators
 ```
+Show Local Group Membership using Pipe
+```powershell
+Get-LocalGroup -Name 'Remote Desktop Users' | Get-LocalGroupMember
+```
 Show Local Profiles and Their SIDs
 ```powershell
 Get-WmiObject win32_userprofile | Select LocalPath,SID
