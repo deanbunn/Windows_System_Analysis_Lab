@@ -609,8 +609,29 @@ Get-ScheduledTask | Sort-Object -Property TaskName | Foreach-Object { Write-Outp
 ## Lession 6
 
 <details>
-<summary>Windows Updates</summary>
+<summary>Remote Desktop Protocol (RDP)</summary>
 
+View RDP Configuration (If not set via GPO). Check out fDenyTSConnections 0 = enabled, 1 = disabled
+```powershell
+Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server'
+```
+Check Status of RDP Service
+```powershell
+Get-Service -Name TermService | fl
+```
+Display information about users logged on to the system. Run with /? for Help
+```powershell
+quser
+```
+Display information about Remote Desktop Services sessions. Run with /? for Help
+```powershell
+qwinsta
+```
+
+</details>
+
+<details>
+<summary>Windows Updates</summary>
 
 Show Windows Update Log
 ```powershell
