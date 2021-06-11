@@ -528,11 +528,11 @@ Get-WmiObject win32_userprofile | Select LocalPath,SID
 
 Get Process By Partial Name
 ```powershell
-Get-Process -Name FireFo*
+Get-Process -Name Chrom*
 ```
 Get Path to Process's Executable
 ```powershell
-Get-Process -FileVersionInfo | Select-Object OriginalFilename,FileName | Sort-Object OriginalFilename
+Get-Process -FileVersionInfo -ErrorAction "SilentlyContinue" | Select-Object OriginalFilename,FileVersionRaw,FileName | Sort-Object OriginalFilename
 #Or
 Get-WmiObject -Class Win32_Process -Computer localhost | Select-Object Name,Path | Sort-Object Name
 ```
@@ -576,11 +576,11 @@ Get Application Log Entries Between Specific Times
 ```powershell
 Get-EventLog -LogName Application -Before (get-date).AddDays(-1) -After (get-date).AddDays(-3)
 ```
-Get Failed Logins Over the Last 24 Hours
+Get Failed Logins Over the Last 24 Hours (Requires Elevated Session)
 ```powershell
 Get-EventLog -LogName Security -After (get-date).AddDays(-1) | Where-Object { $_.instanceID -eq 4625 }
 ```
-Get Successful Logins Over the Last 24 Hours
+Get Successful Logins Over the Last 24 Hours (Requires Elevated Session)
 ```powershell
 Get-EventLog -LogName Security -InstanceId 4624 -After (get-date).AddDays(-1)
 ```
