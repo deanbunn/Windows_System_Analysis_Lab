@@ -493,7 +493,7 @@ Get-PrinterPort
 
 </details>
 
-## Lession 5
+## Lesson 5
 
 <details>
 <summary>Local Users and Groups</summary>
@@ -610,7 +610,7 @@ Get-ScheduledTask | Sort-Object -Property TaskName | Foreach-Object { Write-Outp
 
 </details>
 
-## Lession 6
+## Lesson 6
 
 <details>
 <summary>Remote Desktop Protocol (RDP)</summary>
@@ -689,7 +689,7 @@ $arrInstldApps;
 
 </details>
 
-## Lession 7
+## Lesson 7
 
 <details>
 <summary>Network Settings and Connections</summary>
