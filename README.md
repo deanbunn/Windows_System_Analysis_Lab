@@ -770,11 +770,11 @@ Get-Service -Name WinRM
 #Or
 Test-WSMan
 ```
-View WinRM Config
+View WinRM Config (Requires Elevated Session)
 ```powershell
 Get-WSManInstance -ComputerName Localhost -ResourceURI winrm/config
 ```
-Display WinRM Listener Information
+Display WinRM Listener Information (Requires Elevated Session)
 ```powershell
 Get-WSManInstance -ComputerName Localhost -ResourceURI winrm/config/Listener -Enumerate
 ```

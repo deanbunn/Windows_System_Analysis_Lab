@@ -65,10 +65,10 @@ Get-NetFirewallRule -Enabled True -Direction Inbound -Action Allow
 #Check Status of WinRM Service
 Get-Service -Name WinRM
 #Or 
-Test-WSMan
+Test-WSMan 
 
-#View WinRM Config
+#View WinRM Config (Requires Elevated Session)
 Get-WSManInstance -ComputerName Localhost -ResourceURI winrm/config
 
-#Display Listener Information
+#Display Listener Information (Requires Elevated Session)
 Get-WSManInstance -ComputerName Localhost -ResourceURI winrm/config/Listener -Enumerate
