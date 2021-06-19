@@ -261,8 +261,10 @@ Stop-Process -ID NothingHere -ErrorAction "SilentlyContinue";
 
 ## Lesson 3
 
+### 3.1 Environment Variables
+
 <details>
-<summary>Environment Variables</summary>
+<summary>3.1 Exercises</summary>
 
 
 View Environment Variables
@@ -276,9 +278,10 @@ $Env:path -split ";"
 
 </details>
 
+### 3.2 File System
 
 <details>
-<summary>File System</summary>
+<summary>3.2 Exercises</summary>
 
 
 Navigate with Set-Location (alias cd)
@@ -356,8 +359,11 @@ Get-FileHash .\Scary_Executable_I_Just_Downloaded.exe
 
 </details>
 
+### 3.3 PSDrive and Registry
+
+
 <details>
-<summary>PSDrive and Registry</summary>
+<summary>3.3 Exercises</summary>
 
 
 PS Drives
@@ -368,7 +374,7 @@ List PSDrive for Registry
 ```powershell
 Get-PSDrive -PSProvider Registry
 ```
-Change to HKEY_LOCAL_MACHINE
+Change to HKEY\_LOCAL\_MACHINE
 ```powershell
 cd HKLM:
 ```
@@ -387,8 +393,10 @@ cd env:
 
 </details>
 
+### 3.4 Searching File Contents
+
 <details>
-<summary>Searching File Contents</summary>
+<summary>3.4 Exercises</summary>
 
 
 Create File to Search
@@ -412,8 +420,10 @@ Select-String "explorer" .\process*
 
 ## Lesson 4
 
+### 4.1 System Information
+
 <details>
-<summary>System Information</summary>
+<summary>4.1 Exercises</summary>
 
 
 Get BIOS Information
@@ -431,8 +441,10 @@ Get-WmiObject -Class Win32_OperatingSystem -Computer localhost
 
 </details>
 
+### 4.2 Disk Information
+
 <details>
-<summary>Disk Information</summary>
+<summary>4.2 Exercises</summary>
 
 
 Get Disk Information
@@ -478,8 +490,10 @@ Get-WmiObject -Class Win32_Share -Computer localhost
 
 </details>
 
+### 4.3 Processor and Memory
+
 <details>
-<summary>Processor and Memory</summary>
+<summary>4.3 Exercises</summary>
 
 
 Get Processor Information
@@ -497,8 +511,10 @@ Get-WMIObject -Class Win32_PhysicalMemory | ForEach-Object { Write-Output ($_.De
 
 </details>
 
+### 4.4 Printer Information
+
 <details>
-<summary>Printer Information</summary>
+<summary>4.4 Exercises</summary>
 
 
 Show Printers
@@ -514,8 +530,10 @@ Get-PrinterPort
 
 ## Lesson 5
 
+### 5.1 Local Users and Groups
+
 <details>
-<summary>Local Users and Groups</summary>
+<summary>5.1 Exercises</summary>
 
 
 Show Local Users
@@ -541,8 +559,10 @@ Get-WmiObject win32_userprofile | Select LocalPath,SID
 
 </details>
 
+### 5.2 Processes and Services
+
 <details>
-<summary>Processes and Services</summary>
+<summary>5.2 Exercises</summary>
 
 
 Get Process By Partial Name
@@ -574,8 +594,10 @@ Get-WmiObject -Class Win32_Service -Computer localhost | Select-Object Name,Stat
 
 </details>
 
+### 5.3 Event Logs
+
 <details>
-<summary>Event Logs</summary>
+<summary>5.3 Exercises</summary>
 
 
 Get All Event Log Names
@@ -638,8 +660,10 @@ Get-WinEvent -FilterHashtable @{ LogName=@('Application','System','Security'); L
 
 </details>
 
+### 5.4 Scheduled Tasks
+
 <details>
-<summary>Scheduled Tasks</summary>
+<summary>5.4 Exercises</summary>
 
 
 Show Scheduled Tasks
@@ -663,8 +687,10 @@ Get-ScheduledTask | Sort-Object -Property TaskName | Foreach-Object { Write-Outp
 
 ## Lesson 6
 
+### 6.1 Remote Desktop Protocol (RDP)
+
 <details>
-<summary>Remote Desktop Protocol (RDP)</summary>
+<summary>6.1 Exercises</summary>
 
 View RDP Configuration (If not set via GPO). Check out fDenyTSConnections key. 0 = enabled, 1 = disabled
 ```powershell
@@ -685,8 +711,10 @@ qwinsta
 
 </details>
 
+### 6.2 Windows Updates
+
 <details>
-<summary>Windows Updates</summary>
+<summary>6.2 Exercises</summary>
 
 Show Windows Update Log
 ```powershell
@@ -711,8 +739,10 @@ Get-Content $env:windir\windowsupdate.log | Select-String "Added update"
 
 </details>
 
+### 6.3 Installed Software
+
 <details>
-<summary>Installed Software</summary>
+<summary>6.3 Exercises</summary>
 
 
 Get List of Installed 64 bit Software
@@ -742,8 +772,10 @@ $arrInstldApps;
 
 ## Lesson 7
 
+### 7.1 Network Settings and Connections
+
 <details>
-<summary>Network Settings and Connections</summary>
+<summary>7.1 Exercises</summary>
 
 
 Show Network Adapters
@@ -793,8 +825,10 @@ Get-WmiObject -Class Win32_NetworkAdapterConfiguration | Where-Object { $_.IPAdd
 
 </details>
 
+### 7.2 Firewall Configuration
+
 <details>
-<summary>Firewall Configuration</summary>
+<summary>7.2 Exercises</summary>
 
 
 Show Firewall Status
@@ -812,8 +846,10 @@ Get-NetFirewallRule -Enabled True -Direction Inbound -Action Allow
 
 </details>
 
+### 7.3 Windows Remote Management
+
 <details>
-<summary>Windows Remote Management</summary>
+<summary>7.4 Exercises</summary>
 
 Check Status of WinRM Service
 ```powershell
