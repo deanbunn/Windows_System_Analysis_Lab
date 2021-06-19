@@ -213,10 +213,10 @@ Import-Csv running_services.csv | Foreach { $_.DisplayName }
 
 The Setting for Error Handling is Stored in the $ErrorActionPreference variable
 Error Handling Options:
-1. Continue = Output Error Message; Continue to Run Next Command (Default)
-2. SilentlyContinue = Suppress Error Message; Continue to Run the next command
-3. Stop = Halt the Execution
-4. Inquire = Prompt User for Action to Perform
+- Continue = Output Error Message; Continue to Run Next Command (Default)
+- SilentlyContinue = Suppress Error Message; Continue to Run the next command
+- Stop = Halt the Execution
+- Inquire = Prompt User for Action to Perform
 
 ```powershell
 $ErrorActionPreference = "Continue";
@@ -559,31 +559,63 @@ Get-WmiObject -Class Win32_Service -Computer localhost | Select-Object Name,Stat
 <summary>Event Logs</summary>
 
 
-Get All Event Log Names on a System
+Get All Event Log Names
 ```powershell
-Get-EventLog -List
+Get-WinEvent -ListLog * -ErrorAction SilentlyContinue;
 ```
 Get the Latest 100 Items in the System Log
 ```powershell
-Get-EventLog -LogName System -Newest 100 | Select-Object Message
+Get-WinEvent -LogName 'System' -MaxEvents 100;
 ```
+Log Entry Types:
+- 0 = LogAlways
+- 1 = Critical
+- 2 = Error
+- 3 = Warning
+- 4 = Informational
+- 5 = Verbose
+
+Keywords:
+- AuditFailure = 4503599627370496
+- AuditSuccess = 9007199254740992
+
 Get the Lastest 5 Errors in the System Log
 ```powershell
-Get-EventLog -LogName System -EntryType Error -Newest 5
-#EntryTypes Information, Warning, Error, FailureAudit, SuccessAudit
+Get-WinEvent -FilterHashtable @{ LogName='System'; Level=2; } -MaxEvents 5;
 ```
 Get Application Log Entries Between Specific Times
 ```powershell
-Get-EventLog -LogName Application -Before (get-date).AddDays(-1) -After (get-date).AddDays(-3)
+Get-WinEvent -FilterHashtable @{ LogName='Application'; StartTime=(Get-Date).AddDays(-5); EndTime=(Get-Date).AddDays(-1); };
 ```
 Get Failed Logins Over the Last 24 Hours (Requires Elevated Session)
 ```powershell
-Get-EventLog -LogName Security -After (get-date).AddDays(-1) | Where-Object { $_.instanceID -eq 4625 }
+Get-WinEvent -FilterHashtable @{ LogName='Security'; StartTime=(Get-Date).AddDays(-1); Id='4625'; } | fl | more;
 ```
 Get Successful Logins Over the Last 24 Hours (Requires Elevated Session)
 ```powershell
-Get-EventLog -LogName Security -InstanceId 4624 -After (get-date).AddDays(-1)
+Get-WinEvent -FilterHashtable @{ LogName='Security'; StartTime=(Get-Date).AddDays(-1); Id='4624'; };
 ```
+Get All Audit Failures in the Past Week
+```powershell
+Get-WinEvent -FilterHashtable @{ LogName=@('Security'); Keywords=@(4503599627370496); StartTime=(Get-Date).AddDays(-7); } | fl | more
+```
+Get Provider Names for Application, System, and Security Logs (Requires Elevated Session)
+```powershell
+Get-WinEvent -ListLog @('Application','System','Security') | Select-Object LogName, @{Name="Providers"; Expression={$_.ProviderNames | Sort-Object }} | Foreach-Object { Write-Output("`r`n---- " + $_.LogName + " ----`r`n"); $_.Providers }; 
+```
+Get Group Policy Related Entries in System Log in the Last 24 Hours
+```powershell
+Get-WinEvent -FilterHashtable @{ LogName='System'; ProviderName='Microsoft-Windows-GroupPolicy'; StartTime=(Get-Date).AddDays(-1); } | fl | more;
+```
+Get All Sophos and Security Center Events in the Last 72 Hours (Requires Elevated Session)
+```powershell
+Get-WinEvent -FilterHashtable @{ LogName=@('Application','System','Security'); ProviderName=@('HitmanPro.Alert','SAVOnAccess','SAVOnAccessControl','SAVOnAccessFilter','SecurityCenter'); StartTime=(Get-Date).AddDays(-3); } -ErrorAction SilentlyContinue | fl | more
+```
+Get All Critial or Error Entries from Application, System, and Security Logs in Last 24 Hours (Requires Elevated Session)
+```powershell
+Get-WinEvent -FilterHashtable @{ LogName=@('Application','System','Security'); Level=@(1,2); StartTime=(Get-Date).AddDays(-1); };
+```
+
 
 </details>
 
