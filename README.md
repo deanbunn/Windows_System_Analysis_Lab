@@ -11,8 +11,10 @@ At the beginning of each script is a "exit" command to prevent an accidental run
 
 ## Lesson 1
 
+### 1.1 Transcripts 
+
 <details>
-<summary>Transcripts</summary>
+<summary>1.1 Exercises</summary>
 
 
 Start a Transcript File
@@ -34,8 +36,10 @@ Stop-Transcript
 ```
 </details>
 
+### 1.2 PowerShell Version
+
 <details>
-<summary>PowerShell Version</summary>
+<summary>1.2 Exercises</summary>
 
 
 View PowerShell Version
@@ -44,8 +48,11 @@ $PSVersionTable
 ```
 </details>
 
+### 1.3 Cmdlets and Modules
+
+
 <details>
-<summary>Cmdlets and Modules</summary>
+<summary>1.3 Exercises</summary>
 
 Cmdlet Format -eq action-noun
 ```powershell
@@ -114,8 +121,11 @@ New-Alias -Name "Gunrock" Get-ChildItem
 
 </details>
 
+### 1.4 Pipeline
+
+
 <details>
-<summary>Pipeline</summary>
+<summary>1.4 Exercises</summary>
 
 Command to Find If CmdLet Allows for Piping (Check Accept Pipeline Property Under Parameters) 
 ```powershell
@@ -146,8 +156,10 @@ Get-ChildItem | Group-Object -property extension
 
 ## Lesson 2
 
+### 2.1 Script Execution Policy
+
 <details>
-<summary>Script Execution Policy</summary>
+<summary>2.1 Exercises</summary>
 
 Get Current Policy
 ```powershell
@@ -160,8 +172,11 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 </details>
 
+### 2.2 Outputs
+
+
 <details>
-<summary>Outputs</summary>
+<summary>2.2 Exercises</summary>
 
 To Get All the Format Object Commands
 ```powershell
@@ -190,8 +205,10 @@ Get-Service | Where { $_.Status -eq "Running" } | Select-Object Name,DisplayName
 
 </details>
 
+### 2.3 Inputs
+
 <details>
-<summary>Inputs</summary>
+<summary>2.3 Exercises</summary>
 
 Prompt User for Info
 ```powershell
@@ -208,8 +225,10 @@ Import-Csv running_services.csv | Foreach { $_.DisplayName }
 
 </details>
 
+### 2.4 Errors
+
 <details>
-<summary>Errors</summary>
+<summary>2.4 Exercises</summary>
 
 The Setting for Error Handling is Stored in the $ErrorActionPreference variable
 Error Handling Options:
