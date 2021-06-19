@@ -849,7 +849,7 @@ Get-NetFirewallRule -Enabled True -Direction Inbound -Action Allow
 ### 7.3 Windows Remote Management
 
 <details>
-<summary>7.4 Exercises</summary>
+<summary>7.3 Exercises</summary>
 
 Check Status of WinRM Service
 ```powershell
