@@ -569,6 +569,18 @@ Get Process By Partial Name
 ```powershell
 Get-Process -Name Chrom*
 ```
+View Processes by Highest CPU Usage
+```powershell
+Get-Process | Sort-Object CPU -Descending | more
+```
+View Processes by Highest Memory Usage
+```powershell
+Get-Process | Sort-Object WorkingSet -Descending | more
+```
+Show File Information for One of the Sophos Processes
+```powershell
+Get-Process -ProcessName 'swi_fc' -FileVersionInfo | fl
+```
 Get Path to Process's Executable
 ```powershell
 Get-Process -FileVersionInfo -ErrorAction "SilentlyContinue" | Select-Object OriginalFilename,FileVersionRaw,FileName | Sort-Object OriginalFilename
