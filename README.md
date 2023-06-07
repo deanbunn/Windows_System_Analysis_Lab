@@ -1,4 +1,4 @@
-## Beginning PowerShell for Windows System Analysis Lab
+## PowerShell for Windows System Analysis Lab
 
 Seven quick sessions to learn the basics of PowerShell while analysing the configuration of a Windows system.
 
