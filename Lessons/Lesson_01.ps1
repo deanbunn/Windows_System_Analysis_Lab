@@ -1,6 +1,6 @@
 <#
     Script: Lesson_01.ps1
-    Last Modified: 2021-06-06
+    Last Modified: 2023-06-08
 #>
 
 #Stopping an Accidental Run
@@ -52,6 +52,9 @@ Get-Help Get-Process -Online
 #Help with Examples
 Get-Help Get-Process -examples
 
+#Help Full Listing
+Get-Help Get-Process -Full
+
 #Help About a Certain Subject
 Get-Help about_operators
 
@@ -99,9 +102,9 @@ Get-Process | Sort-Object ProcessName -descending
 Get-Process notepad | Tee-Object -file Notepad_Processes.txt | Stop-Process
 
 #Get All Services That Are Running Then Only Show the Display Name
-Get-Service | Where { $_.Status -eq "Running" } | ForEach-Object { $_.DisplayName }
+Get-Service | Where-Object { $_.Status -eq "Running" } | ForEach-Object { $_.DisplayName }
 
-# Quick Way to Report on File Types in a Folder
+#Quick Way to Report on File Types in a Folder
 Get-ChildItem | Group-Object -property extension
 
 

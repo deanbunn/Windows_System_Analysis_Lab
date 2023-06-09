@@ -1,6 +1,6 @@
 <#
     Script: Lesson_02.ps1
-    Last Modified: 2021-06-06
+    Last Modified: 2023-06-08
 #>
 
 #Stopping an Accidental Run
@@ -36,7 +36,7 @@ Get-Service | Out-File Services.txt
 Get-Service | Out-Printer 
 
 #Running Service List With Only a Few Columns Exported to CSV
-Get-Service | Where { $_.Status -eq "Running" } | Select-Object Name,DisplayName,Status,CanStop | Sort-Object DisplayName | Export-Csv running_services.csv -NoTypeInformation
+Get-Service | Where-Object { $_.Status -eq "Running" } | Select-Object Name,DisplayName,Status,CanStop | Sort-Object DisplayName | Export-Csv running_services.csv -NoTypeInformation
 
 ########################################
 # Inputs
@@ -49,7 +49,7 @@ $requiredData = Read-Host -prompt "Enter Required Data"
 $servers = Get-Content servers.txt
 
 #Import Data a CSV File and Use a Specific Column From It
-Import-Csv running_services.csv | Foreach { $_.DisplayName }
+Import-Csv running_services.csv | Foreach-Object { $_.DisplayName }
 
 
 ########################################

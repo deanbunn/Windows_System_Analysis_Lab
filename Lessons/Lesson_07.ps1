@@ -1,6 +1,6 @@
 ﻿<#
     Script: Lesson_07.ps1
-    Last Modified: 2021-06-06
+    Last Modified: 2023-06-08
 #>
 
 #Stopping an Accidental Run
@@ -34,8 +34,17 @@ Resolve-DnsName ucdavis.edu
 #Get Route Information
 Get-NetRoute
 
+#Test If Specific Port Is Open (Computer Name can be hostname or IP Address)
+Test-NetConnection -ComputerName 127.0.0.1 -Port 4000
+
+#Test Network Connection By Port Common Name (Only Options HTTP, RDP, SMB, WINRM)
+Test-NetConnection -ComputerName localhost -CommonTCPPort RDP
+
 #Test Network Connection (Ping and TraceRoute)
-Test-NetConnection ucdavis.edu -TraceRoute
+Test-NetConnection -ComputerName universityofcalifornia.edu -TraceRoute
+
+#Test Network Connection with Detailed Information
+Test-NetConnection -ComputerName universityofcalifornia.edu -DiagnoseRouting -InformationLevel Detailed
 
 #Get MAC Addresses of All Network Adapters
 Get-WmiObject -Class Win32_NetworkAdapter | Where-Object { $_.MACAddress -ne $null } | Select-Object Name,MACAddress | Sort-Object Name
@@ -49,7 +58,7 @@ Get-WmiObject -Class Win32_NetworkAdapterConfiguration | Where-Object { $_.IPAdd
 ###########################################
 
 #Show Firewall Status
-Get-NetFirewallProfile | Select Name,Enabled
+Get-NetFirewallProfile | Select-Object Name,Enabled
 
 #Get Firewall Rules Under Domain Profile
 Get-NetFirewallProfile -Name Domain | Get-NetFirewallRule | More

@@ -145,7 +145,7 @@ Get-Process notepad | Tee-Object -file Notepad_Processes.txt | Stop-Process
 ```
 Get All Services That Are Running Then Only Show the Display Name
 ```powershell
-Get-Service | Where { $_.Status -eq "Running" } | ForEach-Object { $_.DisplayName }
+Get-Service | Where-Object { $_.Status -eq "Running" } | ForEach-Object { $_.DisplayName }
 ```
 Quick Way to Report on File Types in a Folder
 ```powershell
@@ -200,7 +200,7 @@ Get-Service | Out-Printer
 ```
 Running Service List With Only a Few Columns Exported to CSV
 ```powershell
-Get-Service | Where { $_.Status -eq "Running" } | Select-Object Name,DisplayName,Status,CanStop | Sort-Object DisplayName | Export-Csv running_services.csv -NoTypeInformation
+Get-Service | Where-Object { $_.Status -eq "Running" } | Select-Object Name,DisplayName,Status,CanStop | Sort-Object DisplayName | Export-Csv running_services.csv -NoTypeInformation
 ```
 
 </details>
@@ -220,7 +220,7 @@ $servers = Get-Content servers.txt
 ```
 Import Data a CSV File and Use a Specific Column From It
 ```powershell
-Import-Csv running_services.csv | Foreach { $_.DisplayName }
+Import-Csv running_services.csv | Foreach-Object { $_.DisplayName }
 ```
 
 </details>
@@ -845,7 +845,7 @@ Get-WmiObject -Class Win32_NetworkAdapterConfiguration | Where-Object { $_.IPAdd
 
 Show Firewall Status
 ```powershell
-Get-NetFirewallProfile | Select Name,Enabled
+Get-NetFirewallProfile | Select-Object Name,Enabled
 ```
 Get Firewall Rules Under Domain Profile
 ```powershell
