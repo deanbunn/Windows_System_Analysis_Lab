@@ -34,6 +34,12 @@ Resolve-DnsName ucdavis.edu
 #Get Route Information
 Get-NetRoute
 
+#Ping Remote System Only Once
+Test-Connection -TargetName ucdavis.edu -Count 1 
+
+#Traceroute to Remote System
+Test-Connection -TargetName ucdavis.edu -Traceroute
+
 #Test If Specific Port Is Open (Computer Name can be hostname or IP Address)
 Test-NetConnection -ComputerName 127.0.0.1 -Port 4000
 
