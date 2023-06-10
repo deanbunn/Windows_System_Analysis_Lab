@@ -39,7 +39,7 @@ Get-TlsCipherSuite
 #Show Only the AES Ciphers
 Get-TlsCipherSuite -Name "AES"
 
-#How Would You List Just the Names of the Ciphers? 
+#How Would You Just List the Names of the Ciphers? 
 
 #What Happens When You Run
 Get-TlsCipherSuite | Select-Object Name;
@@ -67,10 +67,10 @@ Get-BitLockerVolume
 #The BitLockerVolume Class Has More than 10 Properties. How Would You View All Of Them? 
 
 
-#How Would You Only Display the "VolumeStatus" Property 
+#How Would You Only Display the "VolumeStatus" Property?
 
 
-#Which Command Could You Run to Find The Other "BitLocker" Related Commands
+#Which Command Could You Run to Find The Other "BitLocker" Related Commands?
 
 
 
