@@ -100,3 +100,123 @@ $raSMBAccess | Sort-Object -Property SharePath | Select-Object -Property ShareNa
 #Export Shared Folder ACLs Report to CSV
 $raShareFldACLs | Sort-Object -Property SharePath | Select-Object -Property ShareName,IdentityReference,FileSystemRights,AccessControlType,IsInherited,SharePath | Export-Csv -Path $rptNameSFACLs -NoTypeInformation;
 
+#==================================
+
+<#
+    Script: COE_Instruction_Share_Report.ps1
+#>
+
+#Var for Instruction Directories Folder Location
+[string]$ISDFldrLoc = "E:\Instruction\StudentProfile";
+
+#Var for Pending Deletion Folder Location
+[string]$PendingDeletionFlrLoc = "E:\Instruction\PendingDeletion";
+
+#StudentProfile 
+#StudentDocs
+
+#Var for Report Date
+[string]$rptDate = (Get-Date).ToString("yyyy-MM-dd"); 
+
+#Var for Instruction Report Name
+[string]$rptNameInstruction = ".\Report_Instruction_Dirs_on_" + $rptDate + ".csv";
+
+#DateTime for a Month Ago
+$dtOldProfile = (Get-Date).AddMonths(-24);
+
+#DateTime for a Month Ahead
+$dtMonthAhead = (Get-Date).AddMonths(1);
+
+#Reporting Array
+$arrReporting = @();
+
+#Var for Progress Indicator
+$prgresIndctr = 0;
+
+#Pull All the Directories Under the Instruction Share
+$ISDirctories = Get-ChildItem -Path $ISDFldrLoc -Directory;
+
+#Loop Through Child Directories
+foreach($isdCF in $ISDirctories)
+{
+
+    #Increment Progress Indicator
+    $prgresIndctr++;
+
+    Write-Output ("Serving Number " + $prgresIndctr.ToString());
+
+    #Custom Object for Home Directory Profile Reporting
+    $cstFldrInfo = New-Object PSObject -Property(@{ DirName="";
+                                                    ProfileLoc="";
+                                                    ProfileHDDate="";
+                                                    ProfileLWDate="";
+                                                    ProfileOld=$true;
+                                                    });
+
+    #Set Name of Directory
+    $cstFldrInfo.DirName = $isdCF.Name;
+        
+    #Set Full Profile Location
+    $cstFldrInfo.ProfileLoc = $isdCF.FullName;
+
+    #Set Home Directory Last Write Time
+    $cstFldrInfo.ProfileHDDate = $isdCF.LastWriteTime.ToString();
+
+    #DateTime for Oldest Profile Folder
+    [datetime]$dtOPF = $isdCF.LastWriteTime;
+
+    #Clear Error Log Before Attempting
+    $error.Clear();
+
+    #Pull Profile Folders
+    $gcProfileFldrs = Get-ChildItem -Path $isdCF.FullName -Recurse; #-Directory
+             
+    #Check for Profile Folders Before Comparing
+    if($gcProfileFldrs -ne $null -and $gcProfileFldrs.Length -gt 1)
+    {
+
+        foreach($gcPFldr in $gcProfileFldrs)
+        {
+
+            if($gcPFldr.LastWriteTime -gt $dtOPF -and $gcPFldr.LastWriteTime -lt $dtMonthAhead)
+            {
+                $dtOPF = $gcPFldr.LastWriteTime;
+            }
+
+        }#End of $gcProfileFldrs Foreach
+
+    }#End of Null\Empty Checks on Profile Folders
+
+    $cstFldrInfo.ProfileLWDate = $dtOPF.ToString();
+
+    #Check for Old or Errored Profiles
+    if($dtOldProfile -lt $dtOPF -or $error.Count -gt 0)
+    {
+        $cstFldrInfo.ProfileOld = $false;
+    }
+
+    #Add to Reporting Array
+    $arrReporting += $cstFldrInfo;
+
+}#End $ISDirectories 
+
+
+<#
+foreach($rptInfo in $arrReporting)
+{
+
+    #Check for Old Profiles to Move
+    if($rptInfo.ProfileOld -eq $true -and [string]::IsNullOrEmpty($rptInfo.ProfileLoc) -eq $false)
+    {
+        #Move Command
+        Move-Item -Path $rptInfo.ProfileLoc -Destination $PendingDeletionFlrLoc
+
+        #Write-Output $rptInfo.ProfileLoc;
+    }
+
+}
+#>
+
+#Export Reporting Array to CSV
+$arrReporting | Sort-Object -Property DirName | Select-Object -Property DirName,ProfileOld,ProfileHDDate,ProfileLWDate,ProfileLoc | Export-Csv -Path $rptNameInstruction -NoTypeInformation;
+

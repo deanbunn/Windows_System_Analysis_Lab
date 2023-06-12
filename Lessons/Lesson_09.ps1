@@ -84,4 +84,4 @@ Get-PnpDevice -Class AudioEndpoint,Camera -PresentOnly | Get-PnpDeviceProperty |
 #Write a Script That Uses Custom Objects to Report the Friendly Names and Install Dates Of All Image and Media Devices Currently Present. 
 #Only One Custom Object Per InstanceId
 #Hint - The Group-Object Command is Your Friend
-#Export Custom Object Listing to CSV File
+#Export Custom Object Listing to CSV File (See Lesson 2)
