@@ -16,7 +16,6 @@ Get-MpComputerStatus
 
 #How Would You Only Display the QuickScanStartTime, QuickScanEndTime, and QuickScanOverDue Properties?
 
-
 #View Active and Past Malware Threats that Windows Defender Detected
 Get-MpThreatDetection
 
@@ -71,8 +70,6 @@ Get-BitLockerVolume
 
 
 #Which Command Could You Run to Find The Other "BitLocker" Related Commands?
-
-
 
 
 

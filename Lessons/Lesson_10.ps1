@@ -1,6 +1,6 @@
 <#
     Script: Lesson_10.ps1
-    Last Modified: 2023-06-13
+    Last Modified: 2023-06-14
 #>
 
 #Stopping an Accidental Run
@@ -44,7 +44,9 @@ foreach($LocToCheck in $arrLocsToCheck)
         {
             if($crntPrcs.ToString().StartsWith($ltcFldrLoc) -eq $true)
             {
-                $cstLTCFlder.Running_Process_Count++;
+                #####################################
+                # What Would We Want To Do Here?
+                #####################################
             }
 
         }
@@ -57,12 +59,17 @@ foreach($LocToCheck in $arrLocsToCheck)
         {
             #Create Custom Shared Folder ACL Object
             $cstFsACL = new-object PSObject -Property (@{ Location=""; IdentityReference=""; FileSystemRights=""; AccessControlType=""; IsInherited=""; });
-            $cstFsACL.Location = $ltcFldr.FullName;
-            $cstFsACL.IdentityReference = $fsACL.IdentityReference;
-            $cstFsACL.FileSystemRights = $fsACL.FileSystemRights;
-            $cstFsACL.AccessControlType = $fsACL.AccessControlType;
-            $cstFsACL.IsInherited = $fsACL.IsInherited;
             
+            ############################################################
+            # Load the Custom Object with File System ACL Information
+            #
+            #
+            #
+            #
+            #
+            #
+            ############################################################
+
             #Add Custom Object to Reporting Array
             $arrReportLTCPerms += $cstFsACL;
         }
@@ -86,7 +93,11 @@ foreach($LocToCheck in $arrLocsToCheck)
 #Export LTC Process Count Report to CSV
 $arrReportLTC| Sort-Object -Property Location | Select-Object -Property Location,Running_Process_Count | Export-Csv -Path $rptNameProcessCount -NoTypeInformation;
 
-#Export LTC ACLs Report to CSV
-$arrReportLTCPerms | Sort-Object -Property Location | Select-Object -Property Location,IdentityReference,FileSystemRights,AccessControlType,IsInherited | Export-Csv -Path $rptNameACLs -NoTypeInformation;
+#########################################################
+# Export LTC ACLs Report to CSV
+#
+# 
+#
+#########################################################
 
 

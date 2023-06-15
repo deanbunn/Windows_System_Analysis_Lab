@@ -82,6 +82,10 @@ Help with Examples
 ```powershell
 Get-Help Get-Process -examples
 ```
+Help Full Listing
+```powershell
+Get-Help Get-Process -Full
+```
 Help About a Certain Subject
 ```powershell
 Get-Help about_operators
@@ -286,7 +290,7 @@ $Env:path -split ";"
 
 Navigate with Set-Location (alias cd)
 ```powershell
-cd c:\users\$env:username\Desktop
+Set-Location c:\users\$env:username\Desktop
 ```
 List Items in Current Directory
 ```powershell
@@ -298,11 +302,11 @@ Get-ChildItem -Filter *.txt
 ```
 Get List of All "Item" Cmdlets
 ```powershell
-Get-Command -noun item | Select-Object Name | Sort-Object Name
+Get-Command -noun item | Select-Object Name | Sort-Object Name | Out-File Item_Commands.txt
 ```
 Get the Path of Current Operating Directory
 ```powershell
-(get-location).path
+(Get-Location).Path
 ```
 Check to See If a Directory or File Exists
 ```powershell
@@ -310,7 +314,7 @@ Test-Path -Path c:\goldenstate\warriors.txt
 ```
 Get List of All "Content" Cmdlets
 ```powershell
-Get-Command -Noun content
+Get-Command -Noun Content
 ```
 Search for All Text Files on System Drive
 ```powershell
@@ -334,7 +338,7 @@ Move-Item .\My_Scripts\first_script.ps1 .\My_Scripts\second_script.ps1;
 ```
 Get Rights on Current Directory
 ```powershell
-Get-Acl -Path . | fl
+Get-Acl -Path . | Format-List
 ```
 Get Access on Current Directory
 ```powershell
@@ -350,7 +354,7 @@ List the NTFS Permissions of a File or Folder
 ```
 Show Permissions in Friendly Format on Current Directory
 ```powershell
-(Get-Acl -Path .).Access | Select-Object -ExpandProperty IdentityReference FileSystemRights | FT Value,FileSystemRights
+(Get-Acl -Path .).Access | Select-Object -ExpandProperty IdentityReference FileSystemRights | Format-Table Value,FileSystemRights
 ```
 View File Hash
 ```powershell
@@ -376,7 +380,7 @@ Get-PSDrive -PSProvider Registry
 ```
 Change to HKEY\_LOCAL\_MACHINE
 ```powershell
-cd HKLM:
+Set-Location HKLM:
 ```
 View Windows Current Version Information
 ```powershell
@@ -388,7 +392,7 @@ View RDP Port Number (Requires Admin Console)
 ```
 System Environment
 ```powershell
-cd env:
+Set-Location env:
 ```
 
 </details>
@@ -438,6 +442,10 @@ Get Operating System Info
 ```powershell
 Get-WmiObject -Class Win32_OperatingSystem -Computer localhost
 ```
+Get Consolidated Object of System and Operating System Properties
+```powershell
+Get-ComputerInfo
+```
 
 </details>
 
@@ -449,7 +457,7 @@ Get-WmiObject -Class Win32_OperatingSystem -Computer localhost
 
 Get Disk Information
 ```powershell
-Get-Disk | FL
+Get-Disk | Format-List
 ```
 Show Physical Disk Information
 ```powershell
@@ -469,7 +477,7 @@ Get-Partition
 ```
 Get Disk Volume Information
 ```powershell
-Get-Volume | FT
+Get-Volume | Format-Table
 ```
 Get Fixed Volumes
 ```powershell
@@ -481,7 +489,7 @@ Get-WmiObject -Class Win32_Volume -Filter "DriveType='3'" | Select-Object Name
 ```
 Get Share Info
 ```powershell
-Get-SmbShare | FL
+Get-SmbShare | Format-List
 ```
 Get Share Info (Version 2)
 ```powershell
@@ -521,6 +529,10 @@ Show Printers
 ```powershell
 Get-Printer
 ```
+Show Local Printers
+```powershell
+Get-Printer | Where-Object { $_.Type -eq "Local" } | Format-Table -AutoSize
+```
 Show Printer Ports
 ```powershell
 Get-PrinterPort
@@ -554,7 +566,7 @@ Get-LocalGroup -Name 'Remote Desktop Users' | Get-LocalGroupMember
 ```
 Show Local Profiles and Their SIDs
 ```powershell
-Get-WmiObject win32_userprofile | Select LocalPath,SID
+Get-WmiObject win32_userprofile | Select-Object LocalPath,SID
 ```
 
 </details>
@@ -577,9 +589,9 @@ View Processes by Highest Memory Usage
 ```powershell
 Get-Process | Sort-Object WorkingSet -Descending | more
 ```
-Show File Information for One of the Sophos Processes
+Show File Information for One of the Zoom Processes
 ```powershell
-Get-Process -ProcessName 'swi_fc' -FileVersionInfo | fl
+Get-Process -ProcessName 'Zoom' -FileVersionInfo | Format-List
 ```
 Get Path to Process's Executable
 ```powershell
@@ -642,7 +654,7 @@ Get-WinEvent -FilterHashtable @{ LogName='Application'; StartTime=(Get-Date).Add
 ```
 Get Failed Logins Over the Last 24 Hours (Requires Elevated Session)
 ```powershell
-Get-WinEvent -FilterHashtable @{ LogName='Security'; StartTime=(Get-Date).AddDays(-1); Id='4625'; } | fl | more;
+Get-WinEvent -FilterHashtable @{ LogName='Security'; StartTime=(Get-Date).AddDays(-1); Id='4625'; } | Format-List | more;
 ```
 Get Successful Logins Over the Last 24 Hours (Requires Elevated Session)
 ```powershell
@@ -650,7 +662,7 @@ Get-WinEvent -FilterHashtable @{ LogName='Security'; StartTime=(Get-Date).AddDay
 ```
 Get All Audit Failures in the Past Week
 ```powershell
-Get-WinEvent -FilterHashtable @{ LogName=@('Security'); Keywords=@(4503599627370496); StartTime=(Get-Date).AddDays(-7); } | fl | more
+Get-WinEvent -FilterHashtable @{ LogName=@('Security'); Keywords=@(4503599627370496); StartTime=(Get-Date).AddDays(-7); } | Format-List | more
 ```
 Get Provider Names for Application, System, and Security Logs (Requires Elevated Session)
 ```powershell
@@ -658,11 +670,11 @@ Get-WinEvent -ListLog @('Application','System','Security') | Select-Object LogNa
 ```
 Get Group Policy Related Entries in System Log in the Last 24 Hours
 ```powershell
-Get-WinEvent -FilterHashtable @{ LogName='System'; ProviderName='Microsoft-Windows-GroupPolicy'; StartTime=(Get-Date).AddDays(-1); } | fl | more;
+Get-WinEvent -FilterHashtable @{ LogName='System'; ProviderName='Microsoft-Windows-GroupPolicy'; StartTime=(Get-Date).AddDays(-1); } | Format-List | more;
 ```
 Get All Sophos and Security Center Events in the Last 72 Hours (Requires Elevated Session)
 ```powershell
-Get-WinEvent -FilterHashtable @{ LogName=@('Application','System','Security'); ProviderName=@('HitmanPro.Alert','SAVOnAccess','SAVOnAccessControl','SAVOnAccessFilter','SecurityCenter'); StartTime=(Get-Date).AddDays(-3); } -ErrorAction SilentlyContinue | fl | more
+Get-WinEvent -FilterHashtable @{ LogName=@('Application','System','Security'); ProviderName=@('HitmanPro.Alert','SAVOnAccess','SAVOnAccessControl','SAVOnAccessFilter','SecurityCenter'); StartTime=(Get-Date).AddDays(-3); } -ErrorAction SilentlyContinue | Format-List | more
 ```
 Get All Critial or Error Entries from Application, System, and Security Logs in Last 24 Hours (Requires Elevated Session)
 ```powershell
@@ -680,7 +692,7 @@ Get-WinEvent -FilterHashtable @{ LogName=@('Application','System','Security'); L
 
 Show Scheduled Tasks
 ```powershell
-Get-ScheduledTask | FL
+Get-ScheduledTask | Format-List
 ```
 Get Scheduled Task By Name
 ```powershell
@@ -710,7 +722,7 @@ Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server'
 ```
 Check Status of RDP Service
 ```powershell
-Get-Service -Name TermService | fl
+Get-Service -Name TermService | Format-List
 ```
 Display information about users logged on to the system. Run with /? for Help
 ```powershell
@@ -822,9 +834,29 @@ Get Route Information
 ```powershell
 Get-NetRoute
 ```
+Ping Remote System Only Once
+```powershell
+Test-Connection -TargetName ucdavis.edu -Count 1
+```
+Traceroute to Remote System
+```powershell
+Test-Connection -TargetName ucdavis.edu -Traceroute
+```
+Test If Specific Port Is Open (Computer Name can be hostname or IP Address)
+```powershell
+Test-NetConnection -ComputerName 127.0.0.1 -Port 4000
+```
+Test Network Connection By Port Common Name (Only Options HTTP, RDP, SMB, WINRM)
+```powershell
+Test-NetConnection -ComputerName localhost -CommonTCPPort RDP
+```
 Test Network Connection (Ping and TraceRoute)
 ```powershell
-Test-NetConnection ucdavis.edu -TraceRoute
+Test-NetConnection universityofcalifornia.edu -TraceRoute
+```
+Test Network Connection with Detailed Information
+```powershell
+Test-NetConnection -ComputerName universityofcalifornia.edu -DiagnoseRouting -InformationLevel Detailed
 ```
 Get MAC Addresses of All Network Adapters
 ```powershell
@@ -878,6 +910,90 @@ Display WinRM Listener Information (Requires Elevated Session)
 Get-WSManInstance -ComputerName Localhost -ResourceURI winrm/config/Listener -Enumerate
 ```
 
+</details>
+
+## Lesson 8
+
+### 8.1 Windows Defender
+
+<details>
+<summary>8.1 Exercises</summary>
+
+View Current Defender Status
+```powershell
+Get-MpComputerStatus
+# How Would You Only Display the QuickScanStartTime, QuickScanEndTime, and QuickScanOverDue Properties?
+```
+View Active and Past Malware Threats that Windows Defender Detected
+```powershell
+Get-MpThreatDetection
+```
+View Preferences for the Windows Defender Scans and Updates
+```powershell
+Get-MpPreference
+```
+View All Defender Related Commands
+```powershell
+Get-Command | Where-Object -Property Source -eq -Value "Defender"
+# Which Command Would Start a Quick Scan On the Local System? 
+```
 
 </details>
 
+### 8.2 Transport Layer Security (TLS)
+
+<details>
+<summary>8.2 Exercises</summary>
+
+Show List of Enabled TLS Cipher Suites
+```powershell
+Get-TlsCipherSuite
+```
+Show Only the AES Ciphers
+```powershell
+Get-TlsCipherSuite -Name "AES"
+```
+```powershell
+#How Would You Just List the Names of the Ciphers?
+#What Happens When You Run
+Get-TlsCipherSuite | Select-Object Name;
+```
+Let's Look at What the Get-TlsCipherSuite Command Returns. What is the TypeName Value
+```powershell
+Get-TlsCipherSuite | Get-Member
+```
+```powershell
+#What Happens When You Run
+Get-TlsCipherSuite | Foreach-Object { $_.Name  }
+```
+```powershell
+#Check Out the Help on Disabling a Cipher. Are You Able to Pipe In Get-TlsCipherSuite Object Result?
+Get-Help Disable-TlsCipherSuite -Full
+```
+```powershell
+#Would The Below Code Disable the DES Cipher? 
+Foreach($tcs in (Get-TlsCipherSuite -Name "DES")){ Disable-TlsCipherSuite -Name $tcs.Name }
+```
+
+</details>
+
+### 8.3 BitLocker
+
+<details>
+<summary>8.3 Exercises</summary>
+
+View BitLocker Volume (Requires Elevated Session)
+```powershell
+Get-BitLockerVolume
+```
+```powershell
+#The BitLockerVolume Class Has More than 10 Properties. How Would You View All Of Them? 
+
+
+#How Would You Only Display the "VolumeStatus" Property?
+
+
+#Which Command Could You Run to Find The Other "BitLocker" Related Commands?
+```
+
+</details>
