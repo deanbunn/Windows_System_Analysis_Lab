@@ -1105,14 +1105,17 @@ Show Current PnP AudioEndpoint and Camera Device Friendly Name and Install Date 
 Get-PnpDevice -Class AudioEndpoint,Camera -PresentOnly | Get-PnpDeviceProperty | Sort-Object InstanceId,KeyName | Where-Object -Property KeyName -in -Value "DEVPKEY_Device_FriendlyName", "DEVPKEY_Device_InstallDate" | Format-Table -AutoSize
 ```
 ```powershell
-# Write a Script That Uses Custom Objects to Report the Friendly Names and Install Dates Of All Image and Media Devices Currently Present. 
+<# 
 
-# Only One Custom Object Per InstanceId
+Write a Script That Uses Custom Objects to Report the Friendly Names and Install Dates Of All Image and Media Devices Currently Present. 
 
-# Hint - The Group-Object Command is Your Friend
+Only One Custom Object Per InstanceId
 
-# Export Custom Object Listing to CSV File (See Lesson 2)
+Hint - The Group-Object Command is Your Friend
 
+Export Custom Object Listing to CSV File (See Lesson 2)
+
+#>
 ```
 
 
