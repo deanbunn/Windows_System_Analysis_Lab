@@ -922,9 +922,10 @@ Get-WSManInstance -ComputerName Localhost -ResourceURI winrm/config/Listener -En
 View Current Defender Status
 ```powershell
 Get-MpComputerStatus
-
-# How Would You Only Display the QuickScanStartTime, QuickScanEndTime, and QuickScanOverDue Properties?
 ```
+How Would You Only Display the QuickScanStartTime, QuickScanEndTime, and QuickScanOverDue Properties?
+
+
 View Active and Past Malware Threats that Windows Defender Detected
 ```powershell
 Get-MpThreatDetection
@@ -936,9 +937,9 @@ Get-MpPreference
 View All Defender Related Commands
 ```powershell
 Get-Command | Where-Object -Property Source -eq -Value "Defender"
-
-# Which Command Would Start a Quick Scan On the Local System? 
 ```
+Which Command Would Start a Quick Scan On the Local System? 
+
 
 </details>
 
