@@ -1,6 +1,6 @@
 ## PowerShell for Windows System Analysis Lab
 
-Ten training sessions to learn PowerShell while analysing the configuration of a Windows system.
+Ten training sessions for learning PowerShell while analysing the configuration of a Windows system.
 
 **All lab exercises and descriptions are listed in the README**. 
 
