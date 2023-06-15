@@ -1,6 +1,6 @@
 ## PowerShell for Windows System Analysis Lab
 
-Seven quick sessions to learn the basics of PowerShell while analysing the configuration of a Windows system.
+Ten training sessions to learn PowerShell while analysing the configuration of a Windows system.
 
 **All lab exercises and descriptions are listed in the README**. 
 
@@ -922,6 +922,7 @@ Get-WSManInstance -ComputerName Localhost -ResourceURI winrm/config/Listener -En
 View Current Defender Status
 ```powershell
 Get-MpComputerStatus
+
 # How Would You Only Display the QuickScanStartTime, QuickScanEndTime, and QuickScanOverDue Properties?
 ```
 View Active and Past Malware Threats that Windows Defender Detected
@@ -935,6 +936,7 @@ Get-MpPreference
 View All Defender Related Commands
 ```powershell
 Get-Command | Where-Object -Property Source -eq -Value "Defender"
+
 # Which Command Would Start a Quick Scan On the Local System? 
 ```
 
@@ -955,6 +957,7 @@ Get-TlsCipherSuite -Name "AES"
 ```
 ```powershell
 #How Would You Just List the Names of the Ciphers?
+
 #What Happens When You Run
 Get-TlsCipherSuite | Select-Object Name;
 ```
