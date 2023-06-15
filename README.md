@@ -1,6 +1,6 @@
 ## PowerShell for Windows System Analysis Lab
 
-Ten training sessions for learning PowerShell while analysing the configuration of a Windows system.
+Ten sessions offered for learning to use PowerShell to analyze Windows system configuration.
 
 **All lab exercises and descriptions are listed in the README**. 
 
@@ -923,9 +923,9 @@ View Current Defender Status
 ```powershell
 Get-MpComputerStatus
 ```
-How Would You Only Display the QuickScanStartTime, QuickScanEndTime, and QuickScanOverDue Properties?
-
-
+```powershell
+# How Would You Only Display the QuickScanStartTime, QuickScanEndTime, and QuickScanOverDue Properties?
+```
 View Active and Past Malware Threats that Windows Defender Detected
 ```powershell
 Get-MpThreatDetection
@@ -938,7 +938,10 @@ View All Defender Related Commands
 ```powershell
 Get-Command | Where-Object -Property Source -eq -Value "Defender"
 ```
-Which Command Would Start a Quick Scan On the Local System? 
+```powershell
+# Which Command Would Start a Quick Scan On the Local System? 
+```
+
 
 
 </details>
@@ -957,25 +960,36 @@ Show Only the AES Ciphers
 Get-TlsCipherSuite -Name "AES"
 ```
 ```powershell
-#How Would You Just List the Names of the Ciphers?
-
-#What Happens When You Run
+# How Would You Just List the Names of the Ciphers?
+```
+```powershell
+# What Happens When You Run
+```
+```powershell
 Get-TlsCipherSuite | Select-Object Name;
 ```
-Let's Look at What the Get-TlsCipherSuite Command Returns. What is the TypeName Value
+```powershell
+# Let's Look at What the Get-TlsCipherSuite Command Returns. What is the TypeName Value
+```
 ```powershell
 Get-TlsCipherSuite | Get-Member
 ```
 ```powershell
-#What Happens When You Run
+# What Happens When You Run
+```
+```powershell
 Get-TlsCipherSuite | Foreach-Object { $_.Name  }
 ```
 ```powershell
-#Check Out the Help on Disabling a Cipher. Are You Able to Pipe In Get-TlsCipherSuite Object Result?
+# Check Out the Help on Disabling a Cipher. Are You Able to Pipe In Get-TlsCipherSuite Object Result?
+```
+```powershell
 Get-Help Disable-TlsCipherSuite -Full
 ```
 ```powershell
-#Would The Below Code Disable the DES Cipher? 
+# Would The Below Code Disable the DES Cipher? 
+```
+```powershell
 Foreach($tcs in (Get-TlsCipherSuite -Name "DES")){ Disable-TlsCipherSuite -Name $tcs.Name }
 ```
 
@@ -991,15 +1005,15 @@ View BitLocker Volume (Requires Elevated Session)
 Get-BitLockerVolume
 ```
 ```powershell
-#The BitLockerVolume Class Has More than 10 Properties. How Would You View All Of Them? 
-
-
-#How Would You Only Display the "VolumeStatus" Property?
-
-
-#Which Command Could You Run to Find The Other "BitLocker" Related Commands?
-
+# The BitLockerVolume Class Has More than 10 Properties. How Would You View All Of Them? 
 ```
+```powershell
+# How Would You Only Display the "VolumeStatus" Property?
+```
+```powershell
+# Which Command Could You Run to Find The Other "BitLocker" Related Commands?
+```
+
 
 </details>
 
@@ -1056,7 +1070,8 @@ Get-PnpDevice
 Show PnP USB Devices
 ```powershell
 Get-PnpDevice -Class USB
-
+```
+```powershell
 <# 
 Some PnP Device Classes
 AudioEndpoint
@@ -1074,14 +1089,12 @@ SmartCard
 SoftwareDevice
 USB
 #>
-
 ```
 ```powershell
-#How Would You Display the Currently Present USB Devices?
-
-
-#Which Command Could You Run to Display the Other PnP Device Related Commands?
-
+# How Would You Display the Currently Present USB Devices?
+```
+```powershell
+# Which Command Could You Run to Display the Other PnP Device Related Commands?
 ```
 Show PnP AudioEndpoint and Camera Device Properties
 ```powershell
@@ -1092,13 +1105,13 @@ Show Current PnP AudioEndpoint and Camera Device Friendly Name and Install Date 
 Get-PnpDevice -Class AudioEndpoint,Camera -PresentOnly | Get-PnpDeviceProperty | Sort-Object InstanceId,KeyName | Where-Object -Property KeyName -in -Value "DEVPKEY_Device_FriendlyName", "DEVPKEY_Device_InstallDate" | Format-Table -AutoSize
 ```
 ```powershell
-#Write a Script That Uses Custom Objects to Report the Friendly Names and Install Dates Of All Image and Media Devices Currently Present. 
+# Write a Script That Uses Custom Objects to Report the Friendly Names and Install Dates Of All Image and Media Devices Currently Present. 
 
-#Only One Custom Object Per InstanceId
+# Only One Custom Object Per InstanceId
 
-#Hint - The Group-Object Command is Your Friend
+# Hint - The Group-Object Command is Your Friend
 
-#Export Custom Object Listing to CSV File (See Lesson 2)
+# Export Custom Object Listing to CSV File (See Lesson 2)
 
 ```
 
