@@ -997,6 +997,110 @@ Get-BitLockerVolume
 
 
 #Which Command Could You Run to Find The Other "BitLocker" Related Commands?
+
 ```
+
+</details>
+
+## Lesson 9
+
+### 9.1 Creating Custom Objects
+
+<details>
+<summary>9.1 Exercises</summary>
+
+```powershell
+#Initializing Array to Hold Custom Objects
+$arrReporting = @();
+
+#Load Up 25 Custom Objects
+foreach($n in 1..25)
+{
+    #Creating a Custom Object 
+    $cstObject = New-Object PSObject -Property (@{name=""; weight=0; handed="";});
+
+    #Load Dynamic Value
+    $cstObject.name = "User" + $n;
+    $cstObject.weight = 100 + $n;
+
+    if($n % 5 -eq 0)
+    { 
+        $cstObject.handed = "left";
+    }
+    else 
+    {
+        $cstObject.handed = "right";
+    }
+
+    #Adding Custom Object to Array 
+    $arrReporting += $cstObject;
+}
+
+#View Reporting Array
+$arrReporting;
+
+```
+
+</details>
+
+### 9.2 Plug and Play (PnP) Devices
+
+<details>
+<summary>9.2 Exercises</summary>
+
+Show PnP Devices
+```powershell
+Get-PnpDevice
+```
+Show PnP USB Devices
+```powershell
+Get-PnpDevice -Class USB
+
+<# 
+Some PnP Device Classes
+AudioEndpoint
+Bluetooth
+Camera
+Image
+Media
+Monitor
+Mouse
+Net
+PrintQueue
+Processor
+SecurityDevices
+SmartCard
+SoftwareDevice
+USB
+#>
+
+```
+```powershell
+#How Would You Display the Currently Present USB Devices?
+
+
+#Which Command Could You Run to Display the Other PnP Device Related Commands?
+
+```
+Show PnP AudioEndpoint and Camera Device Properties
+```powershell
+Get-PnpDevice -Class AudioEndpoint,Camera | Get-PnpDeviceProperty | Format-Table -AutoSize
+```
+Show Current PnP AudioEndpoint and Camera Device Friendly Name and Install Date Properties
+```powershell
+Get-PnpDevice -Class AudioEndpoint,Camera -PresentOnly | Get-PnpDeviceProperty | Sort-Object InstanceId,KeyName | Where-Object -Property KeyName -in -Value "DEVPKEY_Device_FriendlyName", "DEVPKEY_Device_InstallDate" | Format-Table -AutoSize
+```
+```powershell
+#Write a Script That Uses Custom Objects to Report the Friendly Names and Install Dates Of All Image and Media Devices Currently Present. 
+
+#Only One Custom Object Per InstanceId
+
+#Hint - The Group-Object Command is Your Friend
+
+#Export Custom Object Listing to CSV File (See Lesson 2)
+
+```
+
+
 
 </details>

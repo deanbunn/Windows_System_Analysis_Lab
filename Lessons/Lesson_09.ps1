@@ -50,7 +50,8 @@ Get-PnpDevice
 #Show PnP USB Devices
 Get-PnpDevice -Class USB
 
-<# Some PnP Device Classes
+<# 
+Some PnP Device Classes
 AudioEndpoint
 Bluetooth
 Camera
