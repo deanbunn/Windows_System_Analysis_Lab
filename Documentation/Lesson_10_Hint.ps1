@@ -300,3 +300,8 @@ $arrReportLTC| Sort-Object -Property Location | Select-Object -Property Location
 $arrReportLTCPerms | Sort-Object -Property Location | Select-Object -Property Location,IdentityReference,FileSystemRights,AccessControlType,IsInherited | Export-Csv -Path $rptNameACLs -NoTypeInformation;
 
 
+#=========================
+
+GPResult /z /scope:computer > results.txt
+
+Invoke-Command -ScriptBlock { gpresult /z /scope:computer > results.txt }
