@@ -20,7 +20,9 @@ At the beginning of each script is a "exit" command to prevent an accidental run
 Start a Transcript File
 ```powershell
 Start-Transcript
-#Default Location C:\Users\userID\Documents\PowerShell_transcript.NNNNNN.NNNNNNNNNNN.txt
+```
+```powershell
+# Default Location C:\Users\userID\Documents\PowerShell_transcript.NNNNNN.NNNNNNNNNNN.txt
 ```
 Start Transcript with Custom Name
 ```powershell
@@ -256,10 +258,17 @@ Some Cmdlets Support an ErrorAction Statement (only for parameter data)
 These Won't Display an Error
 ```powershell
 Remove-Item nothinghere -ErrorAction "SilentlyContinue";
+```
+```powershell
 Stop-Process -ID 8888888 -ErrorAction "SilentlyContinue";
-#This Will Due to -ID Must Be an Int
+```
+```powershell
+# This Will Due to -ID Must Be an Int
+```
+```powershell
 Stop-Process -ID NothingHere -ErrorAction "SilentlyContinue";
 ```
+
 
 </details>
 
@@ -310,7 +319,7 @@ Get the Path of Current Operating Directory
 ```
 Check to See If a Directory or File Exists
 ```powershell
-Test-Path -Path c:\goldenstate\warriors.txt
+Test-Path -Path c:\sacramento\kings.txt
 ```
 Get List of All "Content" Cmdlets
 ```powershell
@@ -609,7 +618,7 @@ Get-Service -Name Spoo*
 ```
 Get Running Services
 ```powershell
-Get-Service | Where { $_.Status -eq "Running" } | Select-Object Name,DisplayName,Status,CanStop | Sort-Object DisplayName
+Get-Service | Where-Object { $_.Status -eq "Running" } | Select-Object Name,DisplayName,Status,CanStop | Sort-Object DisplayName
 ```
 Get All Services and the Account which they are running under
 ```powershell
@@ -1058,10 +1067,24 @@ $arrReporting;
 
 </details>
 
-### 9.2 Plug and Play (PnP) Devices
+### 9.2 Ping IP Range
 
 <details>
 <summary>9.2 Exercises</summary>
+
+```powershell
+<# 
+    Write a One-Liner to Ping a Class C Network and Report the Status of Each Ping.
+    Extra Points for Pinging Each IP Only Once and Incorporating the "Quiet" Switch
+#>
+```
+
+</details>
+
+### 9.3 Plug and Play (PnP) Devices
+
+<details>
+<summary>9.3 Exercises</summary>
 
 Show PnP Devices
 ```powershell
@@ -1123,10 +1146,30 @@ Export Custom Object Listing to CSV File (See Lesson 2)
 
 ## Lesson 10
 
-### 10.1 File Permissions and Processes Script
+### 10.1 Group Policy Results Report
 
 <details>
 <summary>10.1 Exercises</summary>
+
+Displays RSoP Summary Data (Requires Elevated Session)
+```powershell
+GPResult /r /scope:computer
+```
+```powershell
+<#
+    Write a One-Liner Using the GPResult Command that "Displays all available information about Group Policy"
+
+    For Additional Points, Export Results to a Text File
+#>
+```
+
+
+</details>
+
+### 10.2 File Permissions and Processes Script
+
+<details>
+<summary>10.2 Exercises</summary>
 
 Write a Script to Report the File Permissions and Active Process Counts of all Program Files Folders and the Windows Directory 
 ```powershell

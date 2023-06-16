@@ -1,6 +1,6 @@
 ﻿<#
     Script: Lesson_07.ps1
-    Last Modified: 2023-06-08
+    Last Modified: 2023-06-15
 #>
 
 #Stopping an Accidental Run
@@ -35,7 +35,7 @@ Resolve-DnsName ucdavis.edu
 Get-NetRoute
 
 #Ping Remote System Only Once
-Test-Connection -TargetName ucdavis.edu -Count 1 
+Test-Connection -TargetName ucdavis.edu -Count 1
 
 #Traceroute to Remote System
 Test-Connection -TargetName ucdavis.edu -Traceroute

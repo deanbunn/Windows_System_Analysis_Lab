@@ -33,3 +33,7 @@ foreach($pnpDvc in $pnpDevices)
 }
 
 $arrReporting; 
+
+#================================
+
+1..254 | Foreach-Object { $pingStatus = Test-Connection "192.168.0.$_" -Count 1 -Quiet; "192.168.0.$_ $pingStatus" }

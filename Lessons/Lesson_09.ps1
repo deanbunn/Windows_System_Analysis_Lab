@@ -39,6 +39,14 @@ foreach($n in 1..25)
 #View Reporting Array
 $arrReporting;
 
+########################################
+# Ping IP Range
+########################################
+
+# Write a One-Liner to Ping a Class C Network and Report the Status of Each Ping.
+
+# Extra Points for Pinging Each IP Only Once and Incorporating the "Quiet" Switch
+
 
 ########################################
 # Plug and Play (PnP) Devices

@@ -6,6 +6,21 @@
 #Stopping an Accidental Run
 exit
 
+#########################################
+# Group Policy Results Report
+#########################################
+
+#Displays RSoP Summary Data
+GPResult /r /scope:computer
+
+#Write a One-Liner Using the GPResult Command that "Displays all available information about Group Policy"
+
+#For Additional Points, Export Results to a Text File
+
+#########################################
+# File Permissions and Processes Script
+#########################################
+
 #Write a Script to Report the File Permissions and Active Process Counts of all Program Files Folders and the Windows Directory 
 
 #ProgramFiles                   C:\Program Files
