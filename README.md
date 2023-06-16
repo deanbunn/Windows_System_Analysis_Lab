@@ -847,6 +847,10 @@ Ping Remote System Only Once
 ```powershell
 Test-Connection -TargetName ucdavis.edu -Count 1
 ```
+Ping Remote Hosts Only Once and Display Quick Status
+```powershell
+@("1.1.1.1","4.2.2.2","8.8.4.4","8.8.8.8") | Foreach-Object { $pingStatus = Test-Connection $_ -Count 1 -Quiet; "$_ $pingStatus" }
+```
 Traceroute to Remote System
 ```powershell
 Test-Connection -TargetName ucdavis.edu -Traceroute

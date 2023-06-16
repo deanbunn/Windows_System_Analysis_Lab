@@ -1,6 +1,6 @@
 ﻿<#
     Script: Lesson_07.ps1
-    Last Modified: 2023-06-15
+    Last Modified: 2023-06-16
 #>
 
 #Stopping an Accidental Run
@@ -36,6 +36,9 @@ Get-NetRoute
 
 #Ping Remote System Only Once
 Test-Connection -TargetName ucdavis.edu -Count 1
+
+#Ping Remote Hosts Only Once and Display Quick Status
+@("1.1.1.1","4.2.2.2","8.8.4.4","8.8.8.8") | Foreach-Object { $pingStatus = Test-Connection $_ -Count 1 -Quiet; "$_ $pingStatus" }
 
 #Traceroute to Remote System
 Test-Connection -TargetName ucdavis.edu -Traceroute

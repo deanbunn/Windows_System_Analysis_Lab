@@ -37,3 +37,5 @@ $arrReporting;
 #================================
 
 1..254 | Foreach-Object { $pingStatus = Test-Connection "192.168.0.$_" -Count 1 -Quiet; "192.168.0.$_ $pingStatus" }
+
+@("1.1.1.1","4.2.2.2","8.8.4.4","8.8.8.8") | foreach-object { $pingStatus = Test-Connection $_ -Count 1 -Quiet; "$_ $pingStatus" }
